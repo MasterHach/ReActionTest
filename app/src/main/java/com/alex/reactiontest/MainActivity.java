@@ -40,12 +40,21 @@ import be.tarsos.dsp.util.fft.FFT;
 public class MainActivity extends AppCompatActivity {
     private TextView this_text;
     private Button button_logout;
+    private Button playMemory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this_text = findViewById(R.id.this_text);
         button_logout = findViewById(R.id.btn_out);
+        playMemory = findViewById(R.id.btn_mem_game);
+        playMemory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MemoryGameActivity.class);
+                startActivity(intent);
+            }
+        });
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
