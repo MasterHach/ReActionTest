@@ -16,17 +16,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.285" />
+        app:layout_constraintVertical_bias="0.352" />
 
     <Button
         android:id="@+id/btn_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/this_text"
-        android:text="Logout"/>
+        app:layout_constraintVertical_bias="0.751" />
 
     <TextView
         android:id="@+id/textView3"
@@ -51,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/this_text" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/text_mem_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Игр на память выиграно: 0"
@@ -59,5 +60,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/btn_change_nick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="change nick"
+        app:layout_constraintBottom_toTopOf="@+id/btn_out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_mem_game" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

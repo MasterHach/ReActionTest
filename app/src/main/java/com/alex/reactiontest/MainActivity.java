@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +22,13 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 
@@ -39,6 +46,7 @@ import be.tarsos.dsp.util.fft.FFT;
 
 public class MainActivity extends AppCompatActivity {
     private TextView this_text;
+    private TextView mem_count;
     private Button button_logout;
     private Button playMemory;
     @Override
@@ -48,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
         this_text = findViewById(R.id.this_text);
         button_logout = findViewById(R.id.btn_out);
         playMemory = findViewById(R.id.btn_mem_game);
+        mem_count = findViewById(R.id.text_mem_count);
+        View popupGroup = getLayoutInflater().inflate(R.layout.bottom_sheet, null);
+        PopupWindow popupWindow = new PopupWindow(popupGroup, WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT, true);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("users");
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String lolkek = currentUser.getUid();
         playMemory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,11 +72,24 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        myRef.setValue("Hlo, World!");
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("message");
+//
+//        myRef.setValue("Hlo, World!");
         this_text.setText("lolkek");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Long lolkek2 = snapshot.child(lolkek).child("memory_game_counter").getValue(Long.class);
+                mem_count.setText("Ваш счетчик выйгранных игр на память: " + lolkek2);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        mem_count.setText("Ваш счетчик выйгранных игр на память: 0");
         button_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 }
 
 
