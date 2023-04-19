@@ -1,5 +1,7 @@
 package com.alex.reactiontest;
 
+import static android.opengl.ETC1.getWidth;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +17,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Random;
+
 public class MemoryGameActivity extends AppCompatActivity {
     private int numDots;
 
@@ -25,40 +33,37 @@ public class MemoryGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_memory_game);
         // генерируем случайное число точек
         numDots = (int) (Math.random() * 9) + 7;
-
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //DatabaseReference myRef = database.getReference("users");
+        Button checkButton = findViewById(R.id.check_button);
+        EditText numDotsEditText = findViewById(R.id.num_dots_edit_text);
         // создаем и добавляем на экран точки
         ViewGroup dotsLayout = findViewById(R.id.dots_layout);
         for (int i = 0; i < numDots; i++) {
             Circle dot = new Circle(this);
-//            dot.setLayoutParams(new RelativeLayout.LayoutParams(200, 200));
-//            dot.setBackgroundResource(R.color.red);
-            int size = (int)getResources().getDimension(R.dimen.dot_size);
-            int x = (int) (Math.random() * (dotsLayout.getWidth() - size));
-            int y = (int) (Math.random() * (dotsLayout.getHeight() - size));
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-            //layoutParams.gravity = Gravity.CENTER;
-            layoutParams.leftMargin = x;
-            layoutParams.topMargin = y;
-            Log.d("lolkek", String.valueOf(dotsLayout.getHeight()));
-            Log.d("lolkek", String.valueOf(dotsLayout.getWidth()));
-            //dot.setLayoutParams(layoutParams);
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+            dot.setRandom();
             dotsLayout.addView(dot, layoutParams);
             dot.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     dotsLayout.removeView(dot);
+                    checkButton.setVisibility(View.VISIBLE);
+                    numDotsEditText.setVisibility(View.VISIBLE);
                 }
             }, 2000);
         }
 
         // устанавливаем обработчик для кнопки "Проверить"
-        Button checkButton = findViewById(R.id.check_button);
+
+
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText numDotsEditText = findViewById(R.id.num_dots_edit_text);
+
+
                 String input = numDotsEditText.getText().toString();
                 int guess;
                 try {
@@ -67,6 +72,7 @@ public class MemoryGameActivity extends AppCompatActivity {
                     guess = -1;
                 }
                 if (guess == numDots) {
+                    //myRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("score").setValue(numDots);
                     Toast.makeText(MemoryGameActivity.this, "Вы выиграли! Good!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MemoryGameActivity.this, "Вы проиграли!", Toast.LENGTH_SHORT).show();

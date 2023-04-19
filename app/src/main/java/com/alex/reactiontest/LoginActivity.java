@@ -39,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         Btn = findViewById(R.id.login);
         progressbar = findViewById(R.id.progressBar);
         registerIntent = findViewById(R.id.go_to_register);
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//        startActivity(intent);
         registerIntent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)

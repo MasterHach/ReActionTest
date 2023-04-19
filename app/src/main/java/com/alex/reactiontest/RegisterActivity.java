@@ -17,6 +17,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity{
     private EditText emailTextView, passwordTextView;
@@ -95,6 +97,14 @@ public class RegisterActivity extends AppCompatActivity{
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
                         if (task.isSuccessful()) {
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("users");
+                            User user = new User();
+                            user.nickname = "TempUser";
+                            user.email = email;
+                            user.best_score = 0;
+                            user.memory_game_counter = 0;
+                            myRef.child(user.email).setValue(user);
                             Toast.makeText(getApplicationContext(),
                                             "Registration successful!",
                                             Toast.LENGTH_LONG)
