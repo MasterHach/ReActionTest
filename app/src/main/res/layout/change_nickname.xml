@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_bg">
+
+    <TextView
+        android:id="@+id/text_change_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Изменить nickname"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/change_this_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_marginStart="46dp"
+        android:layout_marginEnd="46dp"
+        android:background="@drawable/round_border"
+        android:fontFamily="@font/source_sans_pro"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:hint="nickname"
+        android:textColor="@color/_____________________color"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/button_ok"
+        android:layout_marginTop="15dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal|center"
+        android:background="@drawable/baseline_check_24"
+        android:text="."
+        android:textColor="@color/black"
+         />
+
+</LinearLayout>

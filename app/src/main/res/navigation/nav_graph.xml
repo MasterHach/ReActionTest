@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loadFragment">
+    <fragment
+        android:id="@+id/loadFragment"
+        android:name="com.alex.reactiontest.fragments.LoadFragment"
+        android:label="fragment_load"
+        tools:layout="@layout/fragment_load" >
+        <action
+            android:id="@+id/action_loadFragment_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+        <action
+            android:id="@+id/action_loadFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.alex.reactiontest.fragments.LoginFragment"
+        android:label="nice_login"
+        tools:layout="@layout/nice_login" >
+        <action
+            android:id="@+id/action_loginFragment2_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment2_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.alex.reactiontest.fragments.RegisterFragment"
+        android:label="nice_register"
+        tools:layout="@layout/nice_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="com.alex.reactiontest.fragments.MainMenuFragment"
+        android:label="nice_main_activity"
+        tools:layout="@layout/nice_main_activity" >
+        <action
+            android:id="@+id/action_mainMenuFragment_to_memoryGameFragment"
+            app:destination="@id/memoryGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/memoryGameFragment"
+        android:name="com.alex.reactiontest.fragments.MemoryGameFragment"
+        android:label="activity_memory_game"
+        tools:layout="@layout/activity_memory_game" >
+        <action
+            android:id="@+id/action_memoryGameFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+</navigation>

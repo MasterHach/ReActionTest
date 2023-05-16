@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.alex.reactiontest.fragments.MainMenuFragment">
+
+    <Button
+        android:id="@+id/trophy_btn"
+        android:layout_width="64dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="280dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/trophy"
+        android:backgroundTint="@color/black"
+        android:text="."
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/good_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/mukta_semibold"
+        android:gravity="center"
+        android:text="@string/good_day"
+        android:textColor="@color/black"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/mukta_semibold"
+        android:gravity="center"
+        android:text="Anonymous"
+        android:textColor="@color/black"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/best_percent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Процент побед в играх на память: 0.0%"
+        android:textColor="@color/black"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/best_score"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Лучший счет в игре на реакцию: 0"
+        android:textColor="@color/black"
+        android:textSize="17sp" />
+
+
+    <Button
+        android:id="@+id/memory_game"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_weight="2"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/black"
+        android:elevation="3dp"
+        android:fontFamily="@font/source_sans_pro_semibold"
+        android:stateListAnimator="@null"
+        android:text="@string/memory_game"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:translationZ="4dp"
+        app:cornerRadius="11dp" />
+
+    <Button
+        android:id="@+id/reaction_game"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_weight="2"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:backgroundTint="@color/black"
+        android:elevation="3dp"
+        android:fontFamily="@font/source_sans_pro_semibold"
+        android:stateListAnimator="@null"
+        android:text="@string/reaction_game"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:translationZ="4dp"
+        app:cornerRadius="11dp" />
+
+    <Button
+        android:id="@+id/change_nick"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_weight="2"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/black"
+        android:elevation="3dp"
+        android:fontFamily="@font/source_sans_pro_semibold"
+        android:stateListAnimator="@null"
+        android:text="@string/change_nick"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:translationZ="4dp"
+        app:cornerRadius="11dp" />
+
+    <Button
+        android:id="@+id/exit"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_weight="2"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/round_border"
+        android:backgroundTint="@android:color/transparent"
+        android:drawableLeft="@drawable/logout"
+        android:elevation="3dp"
+        android:fontFamily="@font/source_sans_pro_semibold"
+        android:stateListAnimator="@null"
+        android:text="@string/exit"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:translationZ="4dp"
+        app:cornerRadius="11dp" />
+
+
+</LinearLayout>

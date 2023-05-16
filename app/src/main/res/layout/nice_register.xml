@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.alex.reactiontest.fragments.RegisterFragment">
+
+    <TextView
+        android:id="@+id/name_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/mukta_semibold"
+        android:gravity="center"
+        android:text="@string/________________________string"
+        android:textColor="@color/black"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/name_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/source_sans_pro"
+        android:text="@string/n_mero_do_cart_o_string"
+        android:textColor="@color/n_mero_do_cart_o_color"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edit_email"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_weight="1"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:background="@drawable/round_border"
+        android:fontFamily="@font/source_sans_pro"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:hint="@string/_____________________string"
+        android:textColor="@color/_____________________color"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/n_mero_do_cart_o"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:fontFamily="@font/source_sans_pro"
+        android:text="@string/n_mero_do_cart_o_ek1_string"
+        android:textColor="@color/n_mero_do_cart_o_color"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edit_password"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_weight="1"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:background="@drawable/round_border"
+        android:fontFamily="@font/source_sans_pro"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:inputType="textPassword"
+        android:hint="@string/_____________________ek1_string"
+        android:textColor="@color/_____________________color"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/go_to_login"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginTop="10dp"
+        android:gravity="bottom"
+        android:fontFamily="@font/mukta"
+        android:text="@string/____________string"
+        android:textColor="@color/________________________color"
+        android:textSize="16sp"
+        android:clickable="true"
+        android:focusable="true"
+        />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:backgroundTint="@color/black"/>
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="26dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/source_sans_pro_semibold"
+        android:insetTop="0dp"
+        android:insetBottom="4dp"
+        android:stateListAnimator="@null"
+        android:text="@string/adicionar_cart_o_ek1_string"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:elevation="3dp"
+        android:translationZ="4dp"
+        app:cornerRadius="11dp" />
+
+    <Button
+        android:id="@+id/google_button_reg"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_weight="1"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/round_border"
+        android:backgroundTint="@android:color/transparent"
+        android:drawableLeft="@drawable/google"
+        android:elevation="3dp"
+        android:stateListAnimator="@null"
+        android:translationZ="4dp"
+        android:fontFamily="@font/source_sans_pro_semibold"
+        android:text="@string/adicionar_cart_o_string"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:cornerRadius="11dp"
+        />
+
+
+</LinearLayout>

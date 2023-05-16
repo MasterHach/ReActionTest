@@ -8,4 +8,23 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#CF0000</color>
+    <color name="colorPrimary">#008577</color>
+
+    <color name="colorPrimaryDark">#00574B</color>
+
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="_bg__android_large___1_ek2_color">#FFFFFF</color>
+
+    <color name="________________________color">#514DE9</color>
+
+    <color name="adicionar_cart_o_color">#000000</color>
+
+    <color name="adicionar_cart_o_ek1_color">#F9FAFB</color>
+
+    <color name="n_mero_do_cart_o_color">#A6AAAF</color>
+
+    <color name="_____________________color">#9CA3AF</color>
+
+    <color name="____________color">#1F2023</color>
 </resources>
