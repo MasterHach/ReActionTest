@@ -3,10 +3,12 @@ package com.alex.reactiontest;
 import static androidx.fragment.app.FragmentManagerKt.commit;
 
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -30,6 +32,7 @@ public class ContainerActivity extends AppCompatActivity {
 
     public static ConnectivityManager cm;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,7 @@ public class ContainerActivity extends AppCompatActivity {
         db = AppDatabase.create(this, false);
         userDao = db.userDao();
         errorDao = db.errorDao();
+
     }
 
     @Override
@@ -45,6 +49,7 @@ public class ContainerActivity extends AppCompatActivity {
         super.onStart();
         cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
     }
+
 
     public static boolean isNetworkConnected() {
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();

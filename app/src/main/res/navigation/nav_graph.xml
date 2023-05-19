@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_memoryGameFragment"
             app:destination="@id/memoryGameFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_reactionGameFragment"
+            app:destination="@id/reactionGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/memoryGameFragment"
@@ -53,6 +56,15 @@
         tools:layout="@layout/activity_memory_game" >
         <action
             android:id="@+id/action_memoryGameFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reactionGameFragment"
+        android:name="com.alex.reactiontest.fragments.ReactionGameFragment"
+        android:label="fragment_reaction_game"
+        tools:layout="@layout/fragment_reaction_game" >
+        <action
+            android:id="@+id/action_reactionGameFragment_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
     </fragment>
 </navigation>

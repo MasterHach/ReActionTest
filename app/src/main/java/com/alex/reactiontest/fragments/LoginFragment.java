@@ -78,6 +78,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
+                controller.popBackStack();
                 controller.navigate(R.id.registerFragment, lol, options);
             }
         });
@@ -140,6 +141,7 @@ public class LoginFragment extends Fragment {
 
                                     // if sign-in is successful
                                     // intent to home activity
+                                    controller.popBackStack();
                                     controller.navigate(R.id.mainMenuFragment, lol, options);
                                 }
 

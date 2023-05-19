@@ -92,12 +92,12 @@ public class LoadFragment extends Fragment {
             controller.popBackStack();
             NavOptions options = new NavOptions.Builder()
                     .build();
-            controller.navigate(R.id.loginFragment2, lol, options);
-//            if (is_logged) {
-//                controller.navigate(R.id.mainMenuFragment, lol, options);
-//            } else {
-//                controller.navigate(R.id.loginFragment2, lol, options);
-//            }
+ //           controller.navigate(R.id.loginFragment2, lol, options);
+            if (is_logged) {
+                controller.navigate(R.id.mainMenuFragment, lol, options);
+            } else {
+                controller.navigate(R.id.loginFragment2, lol, options);
+            }
         }
     }
 

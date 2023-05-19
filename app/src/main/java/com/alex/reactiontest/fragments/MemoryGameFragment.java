@@ -1,6 +1,8 @@
 package com.alex.reactiontest.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +12,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +24,9 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.alex.reactiontest.Circle;
+import com.alex.reactiontest.ContainerActivity;
 import com.alex.reactiontest.R;
+import com.alex.reactiontest.entities.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -85,6 +91,7 @@ public class MemoryGameFragment extends Fragment {
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //controller.popBackStack();
                 controller.navigate(R.id.mainMenuFragment, lol, options);
                 String input = numDotsEditText.getText().toString();
                 int guess;
@@ -94,12 +101,49 @@ public class MemoryGameFragment extends Fragment {
                     guess = -1;
                 }
 
+                int finalGuess = guess;
+
+                Handler handler = new Handler(Looper.getMainLooper());
+                Thread something = new Thread() {
+                    @Override
+                    public void run() {
+                        SharedPreferences mSettings = getActivity().getSharedPreferences("mysettings", Context.MODE_PRIVATE);
+
+                        String this_uid = mSettings.getString("logged_uid", ".");
+                        Log.d("my uid", this_uid);
+                        int total = ContainerActivity.userDao.getUserByUid(this_uid).total_games;
+                        int positive = ContainerActivity.userDao.getUserByUid(this_uid).positive_games;
+
+                        ContainerActivity.userDao.updateTotalScore(this_uid, total + 1);
+                        if (finalGuess == numDots) {
+                            ContainerActivity.userDao.updatePositiveScore(this_uid, positive + 1);
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getContext(), "Вы выиграли! Good!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        } else {
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getContext(), "Вы проиграли!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        }
+
+                    }
+                };
+                something.start();
+
                     if (currentUser != null) {
                         uid = currentUser.getUid();
                         DatabaseReference myRef = database.getReference("users")
                                 .child(uid);
 
-                        int finalGuess = guess;
+
                         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -114,12 +158,7 @@ public class MemoryGameFragment extends Fragment {
                                 }
                                 myRef.child("total_games").setValue(total_games + 1);
 
-//                                if (kk == null) {
-//
-//                                    myRef.setValue(1);
-//                                } else {
-//                                    myRef.setValue((int)kk + 1);
-//                                }
+
                             }
 
                             @Override
@@ -129,7 +168,6 @@ public class MemoryGameFragment extends Fragment {
                         });
 
                     }
-
 
 
             }

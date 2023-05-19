@@ -3,40 +3,38 @@
 
     <string name="ek_img_content">ExportKit Image</string>
 
-    <string name="________________________string">Регистрация</string>
+    <string name="________________________string">Registration</string>
 
-    <string name="auth">Авторизация</string>
-    <string name="no_account">У вас еще нет аккаунта?</string>
-    <string name="btn_auth">Войти</string>
-    <string name="good_day">Добрый день,</string>
-    <string name="exit">Выйти</string>
-    <string name="memory_game">Игра на память</string>
-    <string name="reaction_game">Игра на реакцию</string>
-    <string name="change_nick">Сменить Nickname</string>
-    <string name="best_score">Сменить Nickname</string>
+    <string name="auth">Authorization</string>
+    <string name="no_account">Have not an account yet?</string>
+    <string name="btn_auth">Sign in</string>
+    <string name="good_day">Glad to see you,</string>
+    <string name="exit">Exit</string>
+    <string name="memory_game">Memory game</string>
+    <string name="reaction_game">Reaction game</string>
+    <string name="change_nick">Change Nickname</string>
+    <string name="best_score">Change Nickname</string>
 
-    <string name="adicionar_cart_o_string">Войти через Google</string>
+    <string name="adicionar_cart_o_string">Sign in with Google</string>
 
-    <string name="adicionar_cart_o_ek1_string">Зарегистироваться</string>
+    <string name="adicionar_cart_o_ek1_string">Sign up</string>
 
-    <string name="n_mero_do_cart_o_string">Введите e-mail</string>
+    <string name="n_mero_do_cart_o_string">Enter e-mail</string>
 
     <string name="_____________________string">E-mail</string>
 
-    <string name="____________string">У вас уже есть аккаунт?</string>
+    <string name="____________string">Already have an account?</string>
 
-    <string name="n_mero_do_cart_o_ek1_string">Введите пароль</string>
+    <string name="n_mero_do_cart_o_ek1_string">Enter password</string>
 
     <string name="_____________________ek1_string">Password</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome!"</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_password">Password must be > 5 characters</string>
     <string name="login_failed">"Login failed"</string>
 </resources>
