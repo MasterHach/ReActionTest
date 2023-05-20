@@ -144,6 +144,7 @@ public class RegisterFragment extends Fragment {
                             try {
                                 GoogleSignInAccount account = task.getResult(ApiException.class);
                                 firebaseAuthWithGoogle(account);
+                                Log.d("acc", String.valueOf(account));
                             } catch (ApiException e) {
                                 e.printStackTrace();
                             }

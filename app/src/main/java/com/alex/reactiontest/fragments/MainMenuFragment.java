@@ -117,6 +117,13 @@ public class MainMenuFragment extends Fragment {
         changeNick = view.findViewById(R.id.change_nick);
         achievements = view.findViewById(R.id.trophy_btn);
 
+        achievements.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.navigate(R.id.bestPlayersFragment, lol, options);
+            }
+        });
+
         mSettings = getActivity().getSharedPreferences("mysettings", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = mSettings.edit();
 
@@ -208,7 +215,7 @@ public class MainMenuFragment extends Fragment {
                                     new Thread() {
                                         @Override
                                         public void run() {
-                                            set_data_from_room(finalUsers_uid);
+                                            //set_data_from_room(finalUsers_uid);
                                         }
                                     }.start();
                                 }

@@ -48,23 +48,23 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_reactionGameFragment"
             app:destination="@id/reactionGameFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_bestPlayersFragment"
+            app:destination="@id/bestPlayersFragment" />
     </fragment>
     <fragment
         android:id="@+id/memoryGameFragment"
         android:name="com.alex.reactiontest.fragments.MemoryGameFragment"
         android:label="activity_memory_game"
-        tools:layout="@layout/activity_memory_game" >
-        <action
-            android:id="@+id/action_memoryGameFragment_to_mainMenuFragment"
-            app:destination="@id/mainMenuFragment" />
-    </fragment>
+        tools:layout="@layout/activity_memory_game" />
     <fragment
         android:id="@+id/reactionGameFragment"
         android:name="com.alex.reactiontest.fragments.ReactionGameFragment"
         android:label="fragment_reaction_game"
-        tools:layout="@layout/fragment_reaction_game" >
-        <action
-            android:id="@+id/action_reactionGameFragment_to_mainMenuFragment"
-            app:destination="@id/mainMenuFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_reaction_game" />
+    <fragment
+        android:id="@+id/bestPlayersFragment"
+        android:name="com.alex.reactiontest.fragments.BestPlayersFragment"
+        android:label="fragment_best_players"
+        tools:layout="@layout/fragment_best_players" />
 </navigation>
