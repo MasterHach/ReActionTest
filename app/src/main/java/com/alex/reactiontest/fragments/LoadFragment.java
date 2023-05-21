@@ -25,6 +25,8 @@ import android.widget.Toast;
 import com.alex.reactiontest.R;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class LoadFragment extends Fragment {
     private ProgressBar progressBar;
     public NavController controller;
@@ -49,14 +51,12 @@ public class LoadFragment extends Fragment {
         controller = NavHostFragment.findNavController(this);
 
 
-        SharedPreferences mSettings = getActivity().getSharedPreferences("mysettings", Context.MODE_PRIVATE);
+        SharedPreferences mSettings = requireActivity().getSharedPreferences("mysettings", Context.MODE_PRIVATE);
 
         is_logged = mSettings.getBoolean("is_logged", false);
         SharedPreferences.Editor editor = mSettings.edit();
         editor.putString("logged_uid", ".");
         editor.apply();
-
-
 
         new LoadingTask().execute();
     }
@@ -92,7 +92,6 @@ public class LoadFragment extends Fragment {
             controller.popBackStack();
             NavOptions options = new NavOptions.Builder()
                     .build();
- //           controller.navigate(R.id.loginFragment2, lol, options);
             if (is_logged) {
                 controller.navigate(R.id.mainMenuFragment, lol, options);
             } else {

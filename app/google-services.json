@@ -1,71 +1,41 @@
 {
   "project_info": {
-    "project_number": "415668532651",
-    "firebase_url": "https://listenlol-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "listenlol",
-    "storage_bucket": "listenlol.appspot.com"
+    "project_number": "173762635720",
+    "project_id": "reaction-bc351",
+    "storage_bucket": "reaction-bc351.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:415668532651:android:026aa875d00f1b1f484eee",
+        "mobilesdk_app_id": "1:173762635720:android:bbdff3f9a4d715a2d6c2fd",
         "android_client_info": {
           "package_name": "com.alex.reactiontest"
         }
       },
       "oauth_client": [
         {
-          "client_id": "415668532651-m98esumqc2t95e3ba3s4bknq2ccdp51a.apps.googleusercontent.com",
+          "client_id": "173762635720-13h1g2gvjg559dq0n390eiv93mgjg2dp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.alex.reactiontest",
-            "certificate_hash": "977aa8f7369de192236ce32c51862cb118251c5f"
+            "certificate_hash": "881ad0f135c13686c1ea38da2c36db9d59d9c7d9"
           }
         },
         {
-          "client_id": "415668532651-se0bd1okqae3pac1u432812vv7sngk32.apps.googleusercontent.com",
+          "client_id": "173762635720-4m1kvbtgej75hnc08d76j48jmn4hcpu2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAgdo1k45BoHaik3xWcD7qh8JS0Hc2SSEg"
+          "current_key": "AIzaSyAfmp7hfeeqgmucvfC5VcXxeHB9UGC7UOU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "415668532651-ru2dj1r1quu66ia1dils4lab5vbo496d.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:415668532651:android:4989d6fcebd9e2b2484eee",
-        "android_client_info": {
-          "package_name": "com.alex.vkapi"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "415668532651-se0bd1okqae3pac1u432812vv7sngk32.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAgdo1k45BoHaik3xWcD7qh8JS0Hc2SSEg"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "415668532651-ru2dj1r1quu66ia1dils4lab5vbo496d.apps.googleusercontent.com",
+              "client_id": "173762635720-4m1kvbtgej75hnc08d76j48jmn4hcpu2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

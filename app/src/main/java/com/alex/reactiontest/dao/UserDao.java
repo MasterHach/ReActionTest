@@ -9,6 +9,7 @@ import androidx.room.Update;
 
 import com.alex.reactiontest.entities.User;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -27,6 +28,9 @@ public interface UserDao {
 
     @Query("UPDATE users SET positive_games = :positive_games WHERE uid = :user_uid")
     void updatePositiveScore(String user_uid, int positive_games);
+
+    @Query("UPDATE users SET last_update = :last_update WHERE uid = :user_uid")
+    void setLastUpdate(String user_uid, long last_update);
 
     @Query("SELECT * FROM users")
     List<User> getAllUsers();

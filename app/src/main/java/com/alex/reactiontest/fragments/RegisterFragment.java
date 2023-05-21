@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.alex.reactiontest.ContainerActivity;
 import com.alex.reactiontest.R;
+import com.alex.reactiontest.entities.LogClass;
 import com.alex.reactiontest.entities.User;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.SignInCredential;
@@ -51,7 +52,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class RegisterFragment extends Fragment {
     private EditText emailTextView, passwordTextView;
@@ -59,19 +64,12 @@ public class RegisterFragment extends Fragment {
     private ProgressBar progressbar;
     private FirebaseAuth mAuth;
     private TextView loginIntent;
-
     private Button googleBtn;
-    private long childCount;
     public NavController controller;
     public NavOptions options;
-
     private GoogleSignInClient googleSignInClient;
-
     private ActivityResultLauncher<Intent> signInLauncher;
-
-
-    Bundle lol;
-
+    Bundle bundle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,7 +82,6 @@ public class RegisterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-
         // initialising all views through id defined above
         emailTextView = view.findViewById(R.id.edit_email);
         passwordTextView = view.findViewById(R.id.edit_password);
@@ -96,16 +93,14 @@ public class RegisterFragment extends Fragment {
         options = new NavOptions.Builder()
                 .build();
 
-        google_sing_in();
-
-
+        //google_sing_in();
 
         loginIntent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
                 controller.popBackStack();
-                controller.navigate(R.id.loginFragment2, lol, options);
+                controller.navigate(R.id.loginFragment2, bundle, options);
             }
         });
         Btn.setOnClickListener(new View.OnClickListener() {
@@ -115,110 +110,106 @@ public class RegisterFragment extends Fragment {
                 registerNewUser();
             }
         });
-
         googleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signInWithGoogle();
-                controller.popBackStack();
-                controller.navigate(R.id.mainMenuFragment, lol, options);
+                //signInWithGoogle();
             }
         });
 
     }
 
-    private void google_sing_in() {
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
-        signInLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == Activity.RESULT_OK) {
-                            Intent data = result.getData();
-                            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-                            try {
-                                GoogleSignInAccount account = task.getResult(ApiException.class);
-                                firebaseAuthWithGoogle(account);
-                                Log.d("acc", String.valueOf(account));
-                            } catch (ApiException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                });
-
-    }
-
-    private void signInWithGoogle() {
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        signInLauncher.launch(signInIntent);
-    }
-
-    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
-        Log.d("first step", ",,");
-        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("users");
-                            String lolkek = user.getUid();
-                            User google_user = new User();
-                            google_user.uid = lolkek;
-                            google_user.nickname = "Anonymous";
-                            google_user.email = account.getEmail();
-                            google_user.best_score = 0;
-                            google_user.total_games = 0;
-                            google_user.positive_games = 0;
-                            Thread something = new Thread() {
-                                @Override
-                                public void run() {
-                                    User this_user = new User();
-                                    Log.d("not kaif", String.valueOf(this_user));
-                                    try {
-                                        this_user = ContainerActivity.userDao.getUserByUid(lolkek);
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                    if (this_user == null) {
-
-                                        ContainerActivity.userDao.insert(google_user);
-                                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                childCount = snapshot.getChildrenCount();
-                                                myRef.child(lolkek).setValue(google_user);
-                                                Log.d("snapka", String.valueOf(childCount));
-                                            }
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError error) {
-
-                                            }
-                                        });
-
-                                    }
-
-                                }
-                            };
-                            something.start();
-
-                        }
-                    }
-                });
-    }
+//    private void google_sing_in() {
+//
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestIdToken(getString(R.string.default_web_client_id))
+//                .requestEmail()
+//                .build();
+//        googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
+//        signInLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+//                new ActivityResultCallback<ActivityResult>() {
+//                    @Override
+//                    public void onActivityResult(ActivityResult result) {
+//                        if (result.getResultCode() == Activity.RESULT_OK) {
+//                            Intent data = result.getData();
+//                            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+//                            try {
+//                                GoogleSignInAccount account = task.getResult(ApiException.class);
+//                                firebaseAuthWithGoogle(account);
+//                                Log.d("acc", String.valueOf(account));
+//                            } catch (ApiException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }
+//                });
+//
+//    }
+//
+//    private void signInWithGoogle() {
+//        Intent signInIntent = googleSignInClient.getSignInIntent();
+//        signInLauncher.launch(signInIntent);
+//    }
+//
+//    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
+//        Log.d("first step", ",,");
+//        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+//                            DatabaseReference myRef = database.getReference("users");
+//                            String lolkek = user.getUid();
+//                            User google_user = new User();
+//                            google_user.uid = lolkek;
+//                            google_user.nickname = "Anonymous";
+//                            google_user.email = account.getEmail();
+//                            google_user.best_score = 0;
+//                            google_user.total_games = 0;
+//                            google_user.positive_games = 0;
+//                            Thread something = new Thread() {
+//                                @Override
+//                                public void run() {
+//                                    User this_user = new User();
+//                                    Log.d("not kaif", String.valueOf(this_user));
+//                                    try {
+//                                        this_user = ContainerActivity.userDao.getUserByUid(lolkek);
+//                                    } catch (Exception e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                    if (this_user == null) {
+//
+//                                        ContainerActivity.userDao.insert(google_user);
+//                                        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                                            @Override
+//                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                                childCount = snapshot.getChildrenCount();
+//                                                myRef.child(lolkek).setValue(google_user);
+//                                                Log.d("snapka", String.valueOf(childCount));
+//                                            }
+//
+//                                            @Override
+//                                            public void onCancelled(@NonNull DatabaseError error) {
+//
+//                                            }
+//                                        });
+//
+//                                    }
+//
+//                                }
+//                            };
+//                            something.start();
+//
+//                        }
+//                    }
+//                });
+//    }
 
     private void registerNewUser()
     {
-
         // show the visibility of progress bar to show loading
         progressbar.setVisibility(View.VISIBLE);
 
@@ -229,90 +220,72 @@ public class RegisterFragment extends Fragment {
 
         // Validations for input email and password
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getContext(),
-                            "Please enter email!!",
-                            Toast.LENGTH_LONG)
-                    .show();
+            Toast.makeText(getContext(), "Please enter email!!", Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getContext(),
-                            "Please enter password!!",
-                            Toast.LENGTH_LONG)
-                    .show();
+            Toast.makeText(getContext(), "Please enter password!!", Toast.LENGTH_LONG).show();
             return;
         }
-
         // create new user or register new user
-        mAuth
-                .createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task)
-                    {
-                        if (task.isSuccessful()) {
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("users");
-                            FirebaseUser currentUser = mAuth.getCurrentUser();
-                            String lolkek = currentUser.getUid();
-                            User user = new User();
-                            user.uid = lolkek;
-                            user.nickname = "Anonymous";
-                            user.email = email;
-                            user.best_score = 0;
-                            user.total_games = 0;
-                            user.positive_games = 0;
-                            new Thread() {
-                                @Override
-                                public void run() {
-                                    ContainerActivity.userDao.insert(user);
-                                }
-                            }.start();
-
-                            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    childCount = snapshot.getChildrenCount();
-                                    myRef.child(lolkek).setValue(user);
-                                    Log.d("snapka", String.valueOf(childCount));
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
-
-
-                            Log.d("user count", String.valueOf(childCount));
-                            Log.d("user count", String.valueOf(childCount));
-                            Toast.makeText(getContext(),
-                                            "Registration successful!",
-                                            Toast.LENGTH_LONG)
-                                    .show();
-
-                            // hide the progress bar
-                            progressbar.setVisibility(View.GONE);
-                            // if the user created intent to login activity
-                            controller.popBackStack();
-                            controller.navigate(R.id.mainMenuFragment, lol, options);
-                        }
-                        else {
-
-                            // Registration failed
-                            Toast.makeText(
-                                            getContext(),
-                                            "Registration failed!!"
-                                                    + " Please try again later",
-                                            Toast.LENGTH_LONG)
-                                    .show();
-
-                            // hide the progress bar
-                            progressbar.setVisibility(View.GONE);
-                        }
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
+            task -> {
+                if (task.isSuccessful()) {
+                    FirebaseDatabase database = FirebaseDatabase
+                            .getInstance("https://reaction-bc351-default-rtdb.europe-west1.firebasedatabase.app");
+                    DatabaseReference myRef = database.getReference("users");
+                    FirebaseUser currentUser = mAuth.getCurrentUser();
+                    String user_uid = currentUser.getUid();
+                    char delimiter = '@';
+                    int delimiterIndex = email.indexOf(delimiter);
+                    User user = new User();
+                    Date date = new Date();
+                    user.uid = user_uid;
+                    if (delimiterIndex != -1) {
+                        user.nickname = email.substring(0, delimiterIndex);
+                    } else {
+                        user.nickname = "Anonymous";
                     }
-                });
-    }
+                    user.email = email;
+                    user.best_score = 0;
+                    user.total_games = 0;
+                    user.positive_games = 0;
+                    user.last_update = date.getTime();
+                    new Thread(() -> ContainerActivity.userDao.insert(user)).start();
+                    myRef.child(user_uid).setValue(user);
 
+                    Toast.makeText(getContext(), "Registration successful!",
+                                    Toast.LENGTH_LONG).show();
+
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    // hide the progress bar
+                    progressbar.setVisibility(View.GONE);
+                    // if the user created intent to login activity
+                    controller.popBackStack();
+                    controller.navigate(R.id.mainMenuFragment, bundle, options);
+                }
+                else {
+                    Date date = new Date();
+                    String errorMessage = task.getException().getClass().getSimpleName();
+                    String errorType = String.valueOf(task.getException().getMessage());
+                    String uid = ".";
+                    LogClass log = new LogClass();
+                    log.log_date = date;
+                    log.log_text = errorMessage;
+                    log.log_type = errorType;
+                    log.user_uid = uid;
+                    new Thread(() -> ContainerActivity.errorDao.insert(log)).start();
+                    // Registration failed
+                    Toast.makeText(getContext(), "Registration failed!!"
+                                            + " Please try again later", Toast.LENGTH_LONG)
+                            .show();
+                    // hide the progress bar
+                    progressbar.setVisibility(View.GONE);
+                }
+            });
+    }
 }

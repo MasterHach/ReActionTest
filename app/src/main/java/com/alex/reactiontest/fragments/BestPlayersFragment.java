@@ -54,7 +54,8 @@ public class BestPlayersFragment extends Fragment {
         usersAdapter = new UsersAdapter(userList);
         recyclerView.setAdapter(usersAdapter);
 
-        FirebaseDatabase.getInstance().getReference("users")
+        FirebaseDatabase.getInstance("https://reaction-bc351-default-rtdb.europe-west1.firebasedatabase.app")
+                .getReference("users")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
@@ -62,7 +63,11 @@ public class BestPlayersFragment extends Fragment {
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             User user = snapshot.getValue(User.class);
-                            userList.add(user);
+                            if (userList.size() < 10) {
+                                userList.add(user);
+                            } else {
+                                break;
+                            }
                         }
                         userList.sort(new Comparator<User>() {
                             @Override

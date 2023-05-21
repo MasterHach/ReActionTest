@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ReActionTest</string>
+    <string name="app_name">ReAction</string>
 
     <string name="ek_img_content">ExportKit Image</string>
 
@@ -14,7 +14,8 @@
     <string name="reaction_game">Reaction game</string>
     <string name="change_nick">Change Nickname</string>
     <string name="best_score">Change Nickname</string>
-
+    <string name="winrate_text">Memory game win rate: %s</string>
+    <string name="best_score_text">Best reaction game score: %s</string>
     <string name="adicionar_cart_o_string">Sign in with Google</string>
 
     <string name="adicionar_cart_o_ek1_string">Sign up</string>

@@ -5,6 +5,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.annotation.NonNull;
 
+import java.util.Date;
+
 
 @Entity(tableName = "users")
 public class User {
@@ -21,5 +23,13 @@ public class User {
     public int total_games;
     @ColumnInfo(name = "best_score")
     public int best_score;
+    @ColumnInfo(name = "last_update")
+    public long last_update;
 
+    @NonNull
+    @Override
+    public String toString() {
+        return last_update + " " + nickname + " " + email + " " + positive_games + " " + uid
+                + " " + best_score + " " + total_games + " " + positive_games + "";
+    }
 }

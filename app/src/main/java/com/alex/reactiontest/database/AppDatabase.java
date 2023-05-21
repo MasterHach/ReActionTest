@@ -12,7 +12,7 @@ import com.alex.reactiontest.dao.UserDao;
 import com.alex.reactiontest.entities.LogClass;
 import com.alex.reactiontest.entities.User;
 
-@Database(entities = {User.class, LogClass.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class, LogClass.class}, version = 2, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
@@ -32,7 +32,8 @@ public abstract class AppDatabase extends RoomDatabase {
         if (memoryOnly) {
             bd = Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase.class);
         } else {
-            bd = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DB_NAME);
+            bd = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DB_NAME)
+                    ;
         }
         return(bd.build());
     }

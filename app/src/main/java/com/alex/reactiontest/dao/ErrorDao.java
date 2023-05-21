@@ -17,6 +17,12 @@ public interface ErrorDao {
     @Query("SELECT * FROM errors WHERE user_uid = :user_uid")
     LiveData<List<LogClass>> getErrorsForUser(String user_uid);
 
+    @Query("SELECT * FROM errors")
+    List<LogClass> getAllErrors();
+
+    @Query("SELECT * FROM errors WHERE log_id = :id")
+    LogClass getErrorById(int id);
+
     @Insert
     void insert(LogClass error);
 
