@@ -1,14 +1,24 @@
 package com.alex.reactiontest;
 
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+
 import android.content.Context;
 
+import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.testing.FragmentScenario;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
+
+import com.alex.reactiontest.fragments.MainMenuFragment;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -23,4 +33,5 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.alex.reactiontest", appContext.getPackageName());
     }
+
 }

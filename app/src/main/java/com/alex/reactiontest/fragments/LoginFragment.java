@@ -94,6 +94,8 @@ public class LoginFragment extends Fragment {
         });
     }
 
+
+
     private void loginUserAccount()
     {
         // show the visibility of progress bar to show loading

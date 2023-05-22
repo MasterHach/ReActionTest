@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alex.reactiontest.entities.User;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> {

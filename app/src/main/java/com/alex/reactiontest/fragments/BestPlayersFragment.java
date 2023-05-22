@@ -24,9 +24,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class BestPlayersFragment extends Fragment {
@@ -51,9 +53,15 @@ public class BestPlayersFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
         userList = new ArrayList<>();
+        set_new_user_list();
         usersAdapter = new UsersAdapter(userList);
         recyclerView.setAdapter(usersAdapter);
 
+
+
+    }
+
+    public void set_new_user_list() {
         FirebaseDatabase.getInstance("https://reaction-bc351-default-rtdb.europe-west1.firebasedatabase.app")
                 .getReference("users")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -61,13 +69,10 @@ public class BestPlayersFragment extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             User user = snapshot.getValue(User.class);
-                            if (userList.size() < 10) {
-                                userList.add(user);
-                            } else {
-                                break;
-                            }
+                            userList.add(user);
                         }
                         userList.sort(new Comparator<User>() {
                             @Override
@@ -93,6 +98,11 @@ public class BestPlayersFragment extends Fragment {
                             }
                         });
                         Collections.reverse(userList);
+                        int i = userList.size() - 1;
+                        while (userList.size() > 10) {
+                            userList.remove(i);
+                            i -= 1;
+                        }
                         usersAdapter.notifyDataSetChanged();
                     }
 
@@ -104,6 +114,6 @@ public class BestPlayersFragment extends Fragment {
                         error.setVisibility(View.VISIBLE);
                     }
                 });
-
     }
+
 }

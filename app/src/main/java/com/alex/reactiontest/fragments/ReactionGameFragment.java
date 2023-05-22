@@ -154,31 +154,17 @@ public class ReactionGameFragment extends Fragment {
         gameOver = true;
         View dotView = new View(requireContext());
         dotView.setBackgroundResource(R.drawable.dot_background);
-
-//        int dotSize = getRandomInt(dotSizeMin, dotSizeMax);
-//        float dotAlpha = getRandomFloat(dotAlphaMin, dotAlphaMax);
         int dotSize = dotSizeMax;
         dotView.setAlpha(dotAlphaMax);
-
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(dotSize, dotSize);
         layoutParams.leftMargin = getRandomInt(0, frameLayout.getWidth() - dotSize);
         layoutParams.topMargin = getRandomInt(0, frameLayout.getHeight() - dotSize);
-
-        dotView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //if (!gameOver) {
-                    frameLayout.removeView(v);
-                    gameOver = false;
-                    incrementCounter();
-                //}
-            }
+        dotView.setOnClickListener(v -> {
+                frameLayout.removeView(v);
+                gameOver = false;
+                incrementCounter();
         });
-
-        //Log.d("is clicked", String.valueOf(dotClicked));
-
         frameLayout.addView(dotView, layoutParams);
-
         dotView.animate()
                 .scaleX(0f)
                 .scaleY(0f)

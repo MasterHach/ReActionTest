@@ -149,7 +149,8 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         android:translationZ="4dp"
-        app:cornerRadius="11dp" />
+        app:cornerRadius="11dp"
+        android:visibility="gone"/>
 
 
 </LinearLayout>

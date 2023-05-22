@@ -52,6 +52,15 @@ public class ContainerActivity extends AppCompatActivity {
         cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        //No call for super(). Bug on API Level > 11.
+        outState.putString("WORKAROUND_FOR_BUG_19917_KEY", "WORKAROUND_FOR_BUG_19917_VALUE");
+        super.onSaveInstanceState(outState);
+    }
+
+
+
 
     public static boolean isNetworkConnected() {
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
